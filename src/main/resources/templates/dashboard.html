@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+table, td {
+  border:1px solid black;
+}
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-   <p th:each="book:${bookList}" th:text="${book.title}">
-
-   </p>
-
+   <div th:object="${user}">
+       <p th:text="'Welcome back, ' + *{username}"></p>
+   </div>
+   <table>
+       <tr>
+           <td>Title</td>
+           <td>Number of Pages</td>
+           <td>Publisher</td>
+           <td>Author List</td>
+       </tr>
+       <tr th:each="Book:${books}">
+           <td th:text="${Book.title}"></td>
+           <td th:text="${Book.pages}"></td>
+           <td th:text="${Book.publisher}"></td>
+           <td th:text="${Book.authorList}"></td>
+       </tr>
+   </table>
 </body>
 </html>

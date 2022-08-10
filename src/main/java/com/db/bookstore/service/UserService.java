@@ -12,7 +12,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void insertUser(User user){
+    public void insertUser(User user) {
         userRepository.save(user);
     }
     public User findByUsernameOrEmailAndPassword(User user) throws Exception {
@@ -34,6 +34,20 @@ public class UserService {
        }
 
         return null;
+    }
+    public User findById(int userId) throws Exception {
+        List <User> users = userRepository.findById(userId);
+        if(users.size() == 0)
+        {
+            throw new Exception("No user found");
+        }
+
+        if(users.size() == 1)
+        {
+            return users.get(0);
+        }
+
+        throw new Exception("Database error");
     }
 
 
